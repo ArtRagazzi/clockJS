@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Relógio</title>
+        <style>
+            body{
+                background-color: #393939;
+                color: #F28000;
+                text-align: center;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                padding-top: 200px;
+                font-size: 30px;
+                
+
+            }
+            #relogio{
+                background-color: #393939;
+                border: solid 2px;
+                border-radius: 30px;
+                padding: 4px 50px;
+                color: #F28000;
+                font-weight: bold;
+                text-align: center;
+                
+                
+            }
+            #relogio:hover{
+                transition: 0.7s;
+                background-color: #F28000;
+                color: #393939;
+                font-weight: bold;
+                border: solid 2px;
+                text-align: center;
+                
+                
+            }
+        </style>
+    </head>
+    <body onload="weekDay()">
+        <div id="circle">
+            <h1 id="data"></h1>
+            <label id="relogio" onmouseenter="showDMA()" onmouseout="weekDay()"><h1></h1></label>
+        </div>
+        <script>
+                function showDMA (){
+                    var controle = new Date();
+                    var dia = controle.getDate();
+                        if(dia < 10){
+                            dia = '0'+dia;
+                        }
+                    var mes = controle.getUTCMonth()+1;
+                        if(mes < 10){
+                                mes = '0'+mes;
+                            }
+                    var ano = controle.getFullYear();
+                    document.getElementById("relogio").innerHTML = dia+"/"+mes+"/"+ano;
+                }
+
+                function weekDay(){
+                    var controle = new Date();
+                    var dSemana = controle.getDay();
+                    var diaSemana = 0;
+                    switch(dSemana){
+                        case 0: diaSemana = "Domingo";
+                        break;
+                        case 1: diaSemana = "Segunda-Feira";
+                        break;
+                        case 2: diaSemana = "Terça-Feira";
+                        break;
+                        case 3: diaSemana = "Quarta-Feira";
+                        break;
+                        case 4: diaSemana = "Quinta-Feira";
+                        break;
+                        case 5: diaSemana = "Sexta-Feira";
+                        break;
+                        case 6: diaSemana = "Sábado";
+                        break;
+                    }
+                    document.getElementById("relogio").innerHTML=diaSemana;
+                    hour();
+                }
+            
+                function hour(){
+                    var controle = new Date();
+                    var hora = controle.getHours();
+                        if(hora < 10){
+                            hora = '0'+hora;
+                        }
+                    var minutos = controle.getMinutes();
+                         if(minutos < 10){
+                            minutos = '0'+minutos;
+                        }
+                    var segundos = controle.getSeconds();
+                        if(segundos < 10){
+                            segundos = '0'+segundos;
+                        }
+                    document.getElementById("data").innerHTML=hora+":"+minutos+":"+segundos;
+                }
+                window.setInterval('hour()',1000);
+            
+               
+        </script>
+    </body>
+</html>
